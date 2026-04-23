@@ -1,2 +1,21 @@
-# TrustTag.github.io
-A smart NFC-based system that verifies product authenticity by scanning tags linked to a secure database. It provides details like origin, expiry, and safety info, while supporting accessibility features for users with disabilities, ensuring safer and more reliable purchasing decisions.
+# 🛡️ TrustTag – Product Verification System (MVP)
+
+TrustTag is a simple product verification system that helps users identify authentic and safe products using scannable tags. This MVP demonstrates the core idea of verifying product information through a unique ID system.
+
+---
+
+## 🚀 Features
+
+- Scan product (QR code simulation)
+- Verify product authenticity
+- View product details:
+  - Name
+  - Origin
+  - Expiry date
+  - Status (Verified / Fake)
+- Simple and fast web interface
+- Lightweight backend using Node.js
+
+---
+
+## 🏗️ Project Structure
