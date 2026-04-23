@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TrustTag - Product Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background: #1e293b;
+      color: white;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    input {
+      padding: 12px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .card {
+      margin: 40px auto;
+      padding: 20px;
+      width: 300px;
+      border-radius: 12px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: none;
+    }
+
+    .verified {
+      color: green;
+      font-weight: bold;
+    }
+
+    .fake {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>🛡️ TrustTag</header>
+
+<div class="container">
+  <h2>Product Verification</h2>
+  <p>Enter or scan product ID</p>
+
+  <input type="text" id="productId" placeholder="e.g. TT123">
+  <button onclick="verifyProduct()">Verify</button>
+
+  <div class="card" id="resultCard">
+    <h3 id="productName"></h3>
+    <p><strong>Origin:</strong> <span id="origin"></span></p>
+    <p><strong>Expiry:</strong> <span id="expiry"></span></p>
+    <p id="status"></p>
+  </div>
+</div>
+
+<script>
+  const products = {
+    "TT123": {
+      name: "Milk",
+      origin: "Oman",
+      expiry: "2026-05-01",
+      status: "Verified"
+    },
+    "TT999": {
+      name: "Juice",
+      origin: "Unknown",
+      expiry: "2023-01-01",
+      status: "Fake"
+    }
+  };
+
+  function verifyProduct() {
+    const id = document.getElementById("productId").value.trim();
+    const product = products[id];
+
+    const card = document.getElementById("resultCard");
+
+    if (product) {
+      document.getElementById("productName").innerText = product.name;
+      document.getElementById("origin").innerText = product.origin;
+      document.getElementById("expiry").innerText = product.expiry;
+
+      const statusEl = document.getElementById("status");
+      statusEl.innerText = product.status;
+
+      if (product.status === "Verified") {
+        statusEl.className = "verified";
+      } else {
+        statusEl.className = "fake";
+      }
+
+      card.style.display = "block";
+    } else {
+      document.getElementById("productName").innerText = "Unknown Product";
+      document.getElementById("origin").innerText = "-";
+      document.getElementById("expiry").innerText = "-";
+
+      const statusEl = document.getElementById("status");
+      statusEl.innerText = "Fake Product";
+      statusEl.className = "fake";
+
+      card.style.display = "block";
+    }
+  }
+</script>
+
+</body>
+</html>
